@@ -4,6 +4,11 @@ body {
   line-height: 1;
 }
 
+.save{
+  padding: 0px !important;
+}
+
+
 textarea  {
   background: transparent !important;
   border: none !important;
@@ -64,6 +69,7 @@ header {
   border-bottom-right-radius: 15px;
   background-color: #06aed5;
   color: white;
+
 }
 
 .saveBtn i:hover {

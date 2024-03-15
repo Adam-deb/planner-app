@@ -32,7 +32,7 @@ $(document).ready(function() {
 
     const timeCol = $(`<div class="col-1 hour">${timeLabel}</div>`);
     const eventCol = $(`<div class="col-10 description"><textarea class="form-control"></textarea></div>`);
-    const saveCol = $(`<div class="col-1"><button class="btn btn-primary saveBtn">Save</button></div>`);
+    const saveCol = $(`<div class="col-1 save"><button class="btn btn-primary saveBtn h-100 w-100 pl-0">Save</button></div>`);
 
     row.append(timeCol, eventCol, saveCol);
 
@@ -40,11 +40,11 @@ $(document).ready(function() {
     const current = hour === today.hour();
 
     if (past) {
-      row.addClass("past");
+      eventCol.addClass("past");
     } else if (current) {
-      row.addClass("present");
+      eventCol.addClass("present");
     } else {
-      row.addClass("future");
+      eventCol.addClass("future");
     }
 
     timeBlockGrid.append(row);
