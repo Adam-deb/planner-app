@@ -1,7 +1,7 @@
 dayjs.extend(window.dayjs_plugin_advancedFormat);
 
 $(document).ready(function() {
-  const today = dayjs();
+  const today = dayjs().hour(11);
   const formattedDate = today.format("dddd, MMMM Do");
   $("#currentDay").text(formattedDate);
 
@@ -19,9 +19,9 @@ $(document).ready(function() {
     const row = $(`<div class="row"></div>`);
 
     // Create the columns
-    const timeCol = $(`<div class="col-1">'${timeLabel}'</div>`);
-    const eventCol = $(`<div class="col-10"><input type="text" class="form-control"></div>`);
-    const saveCol = $(`<div class="col-1"><button class="btn btn-primary">Save</button></div>`);
+    const timeCol = $(`<div class="col-1 hour">${timeLabel}</div>`);
+    const eventCol = $(`<div class="col-10 description"><textarea class="form-control"></textarea></div>`);
+    const saveCol = $(`<div class="col-1"><button class="btn btn-primary saveBtn">Save</button></div>`);
 
     // Append columns to the row
     row.append(timeCol, eventCol, saveCol);
