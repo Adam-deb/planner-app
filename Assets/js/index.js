@@ -1,3 +1,4 @@
+//advancedFormat dayjs plugin
 dayjs.extend(window.dayjs_plugin_advancedFormat);
 
 $(document).ready(function() {
@@ -12,21 +13,29 @@ $(document).ready(function() {
 
   const timeBlockGrid = $("#timeBlock");
 
+  //Populate textarea with saved events from localStorage
+  function populateEvents() {
+    $(".row").each(function() {
+      const time = $(this).find(".hour").text();
+      const savedEvent = localStorage.getItem(time);
+      if (savedEvent) {
+        $(this).find("textarea").val(savedEvent);
+      }
+    });
+  }
+
+  //Builds the time block
   for (let hour = workHours.start; hour <= workHours.end; hour++) {
     const timeLabel = dayjs().hour(hour).format("h A");
 
-    // Create the row
     const row = $(`<div class="row"></div>`);
 
-    // Create the columns
     const timeCol = $(`<div class="col-1 hour">${timeLabel}</div>`);
     const eventCol = $(`<div class="col-10 description"><textarea class="form-control"></textarea></div>`);
     const saveCol = $(`<div class="col-1"><button class="btn btn-primary saveBtn">Save</button></div>`);
 
-    // Append columns to the row
     row.append(timeCol, eventCol, saveCol);
 
-    // Add classes based on current/past hour
     const past = hour < today.hour();
     const current = hour === today.hour();
 
@@ -38,8 +47,21 @@ $(document).ready(function() {
       row.addClass("future");
     }
 
-    // Append the row to the schedule grid
     timeBlockGrid.append(row);
   }
-});
 
+  //Populates events from local storage after the grid loads
+  populateEvents();
+
+  //Adds event and time data to local storage
+  function addToLocalStorage() {
+    const row = $(this).closest(".row");
+    const time = row.find(".hour").text();
+    const event = row.find("textarea").val();
+    localStorage.setItem(time, event);
+  }
+
+  //Once the save button is pressed the data is pushed to local storage
+  $(".saveBtn").on("click", addToLocalStorage);
+
+});
