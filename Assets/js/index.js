@@ -2,7 +2,7 @@
 dayjs.extend(window.dayjs_plugin_advancedFormat);
 
 $(document).ready(function() {
-  const today = dayjs().hour();
+  const today = dayjs();
   const formattedDate = today.format("dddd, MMMM Do");
   $("#currentDay").text(formattedDate);
 
