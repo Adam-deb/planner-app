@@ -18,7 +18,7 @@ The Daily Planner App is a simple yet powerful tool to organize your day effecti
 
 Here is a screenshot of the deployed application
 
-![Screenshot of Planner](Assets/images/)
+![Screenshot of Planner](./Assets/images/Screenshot.png)
 
 ## Installation
 
